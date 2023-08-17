@@ -50,7 +50,7 @@ In this repository you will see three executables python files [ar_follower.py](
 rosrun leo_ar_follower ar_follower.py
 ```
 
-The current ARTag is the `Marker0` if you want to use another different change the next line of code 
+The current ARTag is the `Marker0` if you want to use another different for example the `Marker16` change the next line of code, change the `0` to `16` instead and you will use the system will recognize the `Marker16` 
 
 https://github.com/JuanCarlos-TiqueRangel/leo_ar_follower/blob/3ba2c648840a45fbc4d6c8ff8879e6882ac5ea4a/src/ar_follower.py#L27
 
