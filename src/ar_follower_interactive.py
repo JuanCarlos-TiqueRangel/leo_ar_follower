@@ -176,7 +176,6 @@ class leo_ar_follower(object):
             self.cmd_vel_pub.publish(self.twist_cmd)
             rate.sleep()
 
-
 if __name__ == "__main__":
     rospy.init_node("follow_ar_tag")
     ar_tag_follower = leo_ar_follower()

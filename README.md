@@ -34,7 +34,7 @@ roslaunch rover_api alvar.launch
 Once you have setup your environment, to run the ar_following you need to clone this repository in your `catkin_ws/src` folder
 
 ```
-https://github.com/JuanCarlos-TiqueRangel/leo_ar_follower.git
+git clone https://github.com/JuanCarlos-TiqueRangel/leo_ar_follower.git
 ```
 
 Then build the `leo_ar_follower`. You can do this with `catkin_make`
@@ -49,6 +49,8 @@ In this repository you will see three executables python files [ar_follower.py](
 ```
 rosrun leo_ar_follower ar_follower.py
 ```
+
+*Note:* If you see the robot is not moving might be because the ARTag is outside of the vision system.
 
 The current ARTag is the `Marker0` if you want to use another different for example the `Marker16` change the next line of code, change the `0` to `16` instead and you will use the system will recognize the `Marker16`.
 

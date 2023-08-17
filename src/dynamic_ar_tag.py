@@ -1,5 +1,6 @@
 #! /usr/bin/env python
 import rospy
+import sys
 
 from gazebo_msgs.srv import SetModelState
 from gazebo_msgs.msg import ModelState
@@ -76,7 +77,7 @@ class dynamic_ar(object):
         model_state.model_name = 'Marker0'  # Replace with your model's name
         model_state.pose = pose.markers[0].pose.pose
 
-        self.set_model_state(model_state)
+        self.set_model_state(model_state)   
 
     def main(self):
             rate = rospy.Rate(50)
@@ -114,10 +115,12 @@ class dynamic_ar(object):
                         self.update_ar_mark_msg.markers = [self.update_ar_mark]
                         print("AR_pose: ", self.count)
                         self.move_ar_tag = False
+                elif self.count > len(self.positions):
+                    print("Exiting the program... No more targets")
+                    sys.exit(0)
 
                 self.marker_pose_pub.publish(self.update_ar_mark_msg)
                 rate.sleep()  # Control the rate of updates
-                    
 
 if __name__=='__main__':
 	try:
