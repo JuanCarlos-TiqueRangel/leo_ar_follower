@@ -1,59 +1,77 @@
 # ROS Test
-This is a simple programming assignment designed to test your abilities to use ROS to solve a problem.
+In this repository you will know how to run in a simulation environment a [LEO ROVER](https://www.leorover.tech/), also you can do the leo rover follow a AR tag.The simulation software is gazebo and the robot is running in base of ROS 1 in the noetic version.
 
-## Background
+## Simulation
 
 ### LeoRover
-![LeoRover](https://uploads-ssl.webflow.com/5aeedc7c6154a8acb0b29044/5e8e4d5a3fd0013dab1d3ded_leo%20rover%20showcase.jpg)
-
-At Discover, we use LeoRovers as our UGVs. Information about the LeoRover can be found [here](leorover.tech). The LeoRovers use a series 
-of ROS topics and nodes to control and access different components and sensors. The full rqt graph of the topics and nodes is below. 
-![rosgraph](https://github.com/DiscoverCCRI/ROSTest/assets/102448637/4673e269-7d84-4655-abdb-f97140bde28a)
+![LeoRover](docs/leo_rover_gazebo.png)
 
 
-#### Important Topics
-The most important topics for the operation and sensing of the LeoRovers include:
-* /cmd_vel: This topic is used to move the rover by turning the wheels. The topic listens for geometry_msgs/Twist messages.
-* /wheel_odom_with_covariance: This topic contains a lot of useful information about the current position and velocity of the robot. Information is published in the format of a nav_msgs/Odometry message.
-* /joint_states: This topic also contains a lot of useful information about the current position and velocity of the robot. Information is published in the format of a sensor_msgs/JointState message.
-* /imu/data_raw: This topic contains useful information published from the robot's inertial measuring unit. Messages on this topic are
-published in the sensor_msgs/Imu format.
-* /camera/image_raw: This topic is used by the raspicam to publish image data. Images are published in the sensor_msgs/Image format.
+First to run the simulation and get the leo rover as the image above, you need to pull the next container [here](https://hub.docker.com/r/cjb873/sim_image). If you have a nvidia graphic card I advice run the docker with nvidia access to get better simulation performance and more FPS.
+
+```
+docker run -p 9000:80 --name sim -it --gpus all cjb873/sim_image:1.0
+```
+
+Once you run the docker container you can run the simulation of leo_rover
+```
+cd ~/catkin_ws
+
+catkin_make
+
+roslaunch leo_gazebo leo_gazebo.launch
+``` 
 
 ### ARTags
+ARTags can be found in the models section of gazebo. Now with the simulation running you can open a new terminal and start the ARTag tracking node, use the next command:
 
-![ARTag](http://wiki.ros.org/ar_track_alvar?action=AttachFile&do=get&target=artags.png)
+```
+roslaunch rover_api alvar.launch
+```
 
-ARTags are markers that are used to support 3D alignment and tracking in augmented reality systems. More information about ARTags can be
-found [here](https://www.cs.cmu.edu/afs/cs/project/skinnerbots/Wiki/AprilTags/NRC-47419.pdf). 
-We use the [ar_track_alvar](http://wiki.ros.org/ar_track_alvar)
-ROS package to generate and track ARTags. Launch and configuration files used to integrate this package with the LeoRovers are included 
-in our RoverAPI package.
+### AR Following
 
-## The Task
-Your task is to create a ROS package that utilizes the topics published by the LeoRover and the ar_track_alavar package to have the
-robot follow an ARTag as it moves. The video below shows the desired behavior from the robot in the rear it follows the ARTag on the robot in the front.
+Once you have setup your environment, to run the ar_following you need to clone this repository in your `catkin_ws/src` folder
 
-### Notes
-* The rover should maintain a following distance of about half a meter. It does not need to be exactly half a meter behind the ARTag at all times, but it should be close.
-* The rover should be able to follow the ARTag in multiple directions. If the ARTag veers to the left or right, the rover should turn accordingly. If the ARTag backs up, so should the rover.
+```
+https://github.com/JuanCarlos-TiqueRangel/leo_ar_follower.git
+```
 
-https://github.com/DiscoverCCRI/ROSTest/assets/102448637/32544f80-58e4-4bb5-af17-de43826c3042
+Then build the `leo_ar_follower`. You can do this with `catkin_make`
+```
+cd ~/catkin_ws
 
-### Tools
-We have created a docker container image that has the capability of simulating both LeoRovers and ARTags for you to test your ideas. 
-Information about the container image and usage can be found [here](https://hub.docker.com/r/cjb873/sim_image).
+catkin_make
+```
 
-### Submission
-Please fork this repository and keep all of your work within the forked repository. When you are ready to submit, email us a GitHub link 
-to the forked repository. Please write all of your code in the form of a [ROS package](http://wiki.ros.org/Packages). Your submitted
-repository should make use of the common files/structure used by ROS packages (i.e. package.xml, CMakeLists.txt, /scripts, /src, etc). 
-Please overwrite this README.md file with your own. Your README.md file should contain instructions on how to run your code 
-(i.e. launch files to use, Python scripts and/or ROS nodes to run, etc).
+In this repository you will see three executables python files [ar_follower.py](src/ar_follower.py), [dynamic_ar_tag.py](src/dynamic_ar_tag.py) and [ar_follower_interactive.py](src/ar_follower_interactive.py). To interact with the ARTags you need to insert it in the gazebo world. They are located in the insert path window. If you want to a simple AR follower an interact with the ARTag manually you just need to run the command below:
 
+```
+rosrun leo_ar_follower ar_follower.py
+```
 
+The current ARTag is the `Marker0` if you want to use another different change the next line of code 
 
+*use the permalink code here*
 
+The expected behavior will be the next
+
+![LeoRover](docs/ar_follower_manual.mp4)
+
+Now the repository has an interactive method that move automatically the ARTag around the environment and the robot will follow it. To run this you have to cancel the ar_follower.py and now run the code that move dynamically the ARTag:
+
+```
+rosrun leo_ar_follower dynamic_ar_tag.py
+```
+
+In other terminal run the AR follower that will send to the dynamic_ar_tag the answer when it achieves the goal.
+
+```
+rosrun leo_ar_follower ar_follower_interactive.py
+```
+*Note:* This program was designed to run when the robot is located in the initial position o near to it.
+
+![LeoRover](docs/ar_follower.mp4)
 
 
 
