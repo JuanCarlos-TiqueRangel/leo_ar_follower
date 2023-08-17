@@ -56,6 +56,8 @@ The current ARTag is the `Marker0` if you want to use another different change t
 
 The expected behavior will be the next
 ![video](https://clipchamp.com/watch/yGtURuMfufM)
+
+
 ![LeoRover](docs/ar_follower_manual.mp4)
 
 Now the repository has an interactive method that move automatically the ARTag around the environment and the robot will follow it. To run this you have to cancel the ar_follower.py and now run the code that move dynamically the ARTag:
