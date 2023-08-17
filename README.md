@@ -71,7 +71,8 @@ rosrun leo_ar_follower ar_follower_interactive.py
 ```
 *Note:* This program was designed to run when the robot is located in the initial position o near to it.
 
-[![LeoRover](docs/ar_follower.mp4)](https://github.com/JuanCarlos-TiqueRangel/leo_ar_follower/assets/47435355/e0521444-4dde-4121-a248-906c348b21cd)
+https://github.com/JuanCarlos-TiqueRangel/leo_ar_follower/assets/47435355/122c2668-347d-46ca-9ba6-b18f827ad5ce
+
 
 
 
