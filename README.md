@@ -52,7 +52,7 @@ rosrun leo_ar_follower ar_follower.py
 
 The current ARTag is the `Marker0` if you want to use another different change the next line of code 
 
-[This](https://github.com/JuanCarlos-TiqueRangel/leo_ar_follower/blob/3ba2c648840a45fbc4d6c8ff8879e6882ac5ea4a/src/ar_follower.py#L27)
+https://github.com/JuanCarlos-TiqueRangel/leo_ar_follower/blob/3ba2c648840a45fbc4d6c8ff8879e6882ac5ea4a/src/ar_follower.py#L27
 
 The expected behavior will be the next
 
