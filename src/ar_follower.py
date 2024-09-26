@@ -44,11 +44,13 @@ class leo_ar_follower(object):
     def pid_distance(self):
         # PID controller to control the linear velocity based on distance
         ts = 0.2
-        kp = 0.6
-        ki = 4.15
-        kd = 0.3
+        kp = 0.7
+        ki = 4.0
+        kd = 0.5
         desired_distance = 0.5
         error = desired_distance - self.marker_distance
+
+        print("distance: ", self.marker_distance)
 
         if error < 0.45:
             error = -error
@@ -92,6 +94,8 @@ class leo_ar_follower(object):
 
         lin_cmd = self.pid_distance()
         ang_cmd = self.pid_heading()
+
+        print("entro al cmd")
 
         self.twist_cmd.angular.z =  ang_cmd
         self.twist_cmd.linear.x = lin_cmd
