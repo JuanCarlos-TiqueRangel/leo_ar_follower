@@ -56,10 +56,6 @@ The current ARTag is the `Marker0` if you want to use another different for exam
 
 https://github.com/JuanCarlos-TiqueRangel/leo_ar_follower/blob/3ba2c648840a45fbc4d6c8ff8879e6882ac5ea4a/src/ar_follower.py#L27
 
-The expected behavior will be the next (video at 8x): 
-
-https://github.com/JuanCarlos-TiqueRangel/leo_ar_follower/assets/47435355/a186d881-0d7e-46d1-ab25-79035db5abcd
-
 Now the repository has an interactive method that automatically moves the ARTag around the environment and the robot will follow it. To run this you have to cancel the ar_follower.py and now run the code that move dynamically the ARTag:
 
 ```
@@ -72,9 +68,6 @@ In another terminal run the AR follower that will send to the dynamic_ar_tag the
 rosrun leo_ar_follower ar_follower_interactive.py
 ```
 *Note:* This program was designed to run when the robot is located in the initial position or near to it (video at 8x).
-
-https://github.com/JuanCarlos-TiqueRangel/leo_ar_follower/assets/47435355/122c2668-347d-46ca-9ba6-b18f827ad5ce
-
 
 
 
