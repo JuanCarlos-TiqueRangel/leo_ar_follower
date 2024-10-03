@@ -67,7 +67,7 @@ In another terminal run the AR follower that will send to the dynamic_ar_tag the
 ```
 rosrun leo_ar_follower ar_follower_interactive.py
 ```
-*Note:* This program was designed to run when the robot is located in the initial position or near to it (video at 8x).
+*Note:* This program was designed to run when the robot is located in the initial position or near to it.
 
 
 
